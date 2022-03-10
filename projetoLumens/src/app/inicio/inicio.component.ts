@@ -25,6 +25,11 @@ export class InicioComponent implements OnInit {
 
   }
 
+  anuncios(){
+    this.router.navigate(['/anuncios'])
+  }
   
-
+  subir(){
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+}
 }
