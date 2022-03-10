@@ -13,10 +13,13 @@ import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { ContatoComponent } from './contato/contato.component';
 import { PostagemDeleteComponent } from './delete/postagem-delete/postagem-delete.component';
-import { EditComponent } from './edit/edit.component';
 import { CategoriaComponent } from './categoria/categoria/categoria.component';
 import { PostagemEditComponent } from './edit/postagem-edit/postagem-edit.component';
 import { AnunciosComponent } from './anuncios/anuncios.component';
+import { CategoriaDeleteComponent } from './delete/categoria-delete/categoria-delete.component';
+import { OrderModule } from 'ngx-order-pipe';
+import { UserEditComponent } from './edit/user-edit/user-edit.component';
+import { MenuLogadoComponent } from './menu-logado/menu-logado.component';
 
 
 
@@ -34,10 +37,11 @@ import { AnunciosComponent } from './anuncios/anuncios.component';
     CategoriaComponent,
     AnunciosComponent, 
     PostagemDeleteComponent, 
-    PostagemEditComponent
-
+    PostagemEditComponent,
+    CategoriaDeleteComponent,
+    UserEditComponent,
+    MenuLogadoComponent,
   
-
     
   ],
   imports: [
@@ -45,7 +49,8 @@ import { AnunciosComponent } from './anuncios/anuncios.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OrderModule
   ],
   providers: [{
     provide: LocationStrategy,

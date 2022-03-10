@@ -17,13 +17,11 @@ import { PostagemService } from '../service/postagem.service';
 export class AnunciosComponent implements OnInit {
   nome = environment.nomeCompleto
   foto = environment.foto
-  id = environment.id
 
- 
+  tituloPost: string
+  nomeCategoria: string
   postagem: Postagem = new Postagem()
   categoria: Categoria = new Categoria()
-
-
   idCategoria: number
   listaPostagens: Postagem[]
   listaCategorias: Categoria[]
@@ -31,6 +29,9 @@ export class AnunciosComponent implements OnInit {
 
   usuario: Usuario = new Usuario()
   idUser = environment.id
+
+  key = 'data'
+  reverse = true
 
   constructor(
     private router: Router,
@@ -61,8 +62,9 @@ export class AnunciosComponent implements OnInit {
       this.listaPostagens = resp
     })
   }
+  
   findByIdUsuario() {
-    this.authService.getByIdUser(this.idUser).subscribe((resp: Usuario) => {
+    this.authService.getByIdUser(this.idUser).subscribe((resp: Usuario)=>{
       this.usuario = resp
     })
   }
@@ -78,6 +80,27 @@ export class AnunciosComponent implements OnInit {
       this.categoria = resp
     })
   }
+  findByTituloPostagem(){
+
+    if(this.tituloPost ==''){
+      this.getAllPostagens()
+
+    } else{
+      this.postagemService.getByTituloPostagem(this.tituloPost).subscribe((resp: Postagem[])=>{
+        this.listaPostagens = resp
+      })
+    }
+  }
+
+  findByNomeCategoria(){
+    if(this.nomeCategoria == ''){
+      this.getAllCategorias()
+    }else{
+      this.categoriaService.getByNomeCategoria(this.nomeCategoria).subscribe((resp: Categoria[]) =>{
+      })
+    }
+  }
+
 
   publicar() {
     this.categoria.id = this.idCategoria
@@ -93,16 +116,6 @@ export class AnunciosComponent implements OnInit {
       this.getAllPostagens()
     })
   }
-  sair(){
 
-    this.router.navigate(['/entrar'])
-    environment.token = ''
-    environment.nomeCompleto = ''
-    environment.foto = ''
-    environment.tipo = ''
-    environment.id = 0
-    
-    
-    }
     
 }
